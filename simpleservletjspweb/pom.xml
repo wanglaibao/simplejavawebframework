@@ -12,6 +12,7 @@
     <groupId>com.laibao</groupId>
     <artifactId>simple-servletjsp-web</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
