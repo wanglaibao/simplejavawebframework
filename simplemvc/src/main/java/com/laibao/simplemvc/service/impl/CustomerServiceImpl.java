@@ -1,6 +1,7 @@
 package com.laibao.simplemvc.service.impl;
 
 import com.laibao.simplemvc.domain.Customer;
+import com.laibao.simplemvc.helper.DataBaseHelper;
 import com.laibao.simplemvc.service.CustomerService;
 import com.laibao.simplemvc.util.PropsUtil;
 import org.slf4j.Logger;
@@ -17,30 +18,12 @@ import java.util.*;
 public class CustomerServiceImpl implements CustomerService{
     private static final Logger LOGGER= LoggerFactory.getLogger(CustomerServiceImpl.class);
 
-    private static final String DRIVER;
-    private static final String URL;
-    private static final String USERNAME;
-    private static final String PASSWORD;
-
-    static {
-        Properties dbConfigProperty = PropsUtil.loadProps("config.properties");
-        DRIVER = dbConfigProperty.getProperty("jdbc.driver");
-        URL = dbConfigProperty.getProperty("jdbc.url");
-        USERNAME = dbConfigProperty.getProperty("jdbc.username");
-        PASSWORD = dbConfigProperty.getProperty("jdbc.password");
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("can not load jdbc driver",e);
-        }
-    }
-
     @Override
     public List<Customer> getCustomerList(String keyWord) {
         List<Customer> customerList = new ArrayList<>();
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            connection = DataBaseHelper.getConnection();
             String sql = "select * from customer";
             PreparedStatement pstm = connection.prepareStatement(sql);
             ResultSet resultSet = pstm.executeQuery();
@@ -57,13 +40,7 @@ public class CustomerServiceImpl implements CustomerService{
         } catch (SQLException e) {
             LOGGER.error("execute sql error",e);
         }finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    LOGGER.error("close connection failure",e);
-                }
-            }
+            DataBaseHelper.closeConnection(connection);
         }
         return customerList;
     }
