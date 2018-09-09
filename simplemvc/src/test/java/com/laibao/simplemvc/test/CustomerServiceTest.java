@@ -1,5 +1,6 @@
 package com.laibao.simplemvc.test;
 
+import com.alibaba.fastjson.JSON;
 import com.laibao.simplemvc.domain.Customer;
 import com.laibao.simplemvc.service.CustomerService;
 import com.laibao.simplemvc.service.impl.CustomerServiceImpl;
@@ -24,12 +25,13 @@ public class CustomerServiceTest {
 
     @Before
     public void init() {
-        //TODO
+        new CustomerServiceTest();
     }
 
     @Test
     public void getCustomerListTest() {
         List<Customer> customerList = customerService.getCustomerList(null);
+        System.out.println(JSON.toJSONString(customerList));
         Assert.assertEquals(2,customerList.size());
     }
 
