@@ -17,6 +17,7 @@ public final class CastUtil {
     public static Double castDouble(Object obj) {
         return CastUtil.castDouble(obj,0);
     }
+
     public static Double castDouble(Object obj, double defaultValue) {
         double doubleValue=defaultValue;
         if(obj!=null) {
@@ -35,7 +36,8 @@ public final class CastUtil {
     public static Long castLong(Object obj) {
         return CastUtil.castLong(obj,0);
     }
-    private static Long castLong(Object obj, long defaultValue) {
+
+    public static Long castLong(Object obj, long defaultValue) {
         long longValue=defaultValue;
         if(obj!=null) {
             String strValue=castString(obj);
@@ -53,7 +55,8 @@ public final class CastUtil {
     public static int castInt(Object obj) {
         return CastUtil.castInt(obj,0);
     }
-    private static int castInt(Object obj, int defaultValue) {
+
+    public static int castInt(Object obj, int defaultValue) {
         int intValue=defaultValue;
         if(obj!=null) {
             String strValue=castString(obj);
@@ -71,7 +74,8 @@ public final class CastUtil {
     public static boolean castBoolean(Object obj) {
         return CastUtil.castBoolean(obj,false);
     }
-    private static boolean castBoolean(Object obj, boolean defaultValue) {
+
+    public static boolean castBoolean(Object obj, boolean defaultValue) {
         boolean booleanValue=defaultValue;
         if(obj!=null) {
             booleanValue=Boolean.parseBoolean(castString(obj));
@@ -79,6 +83,4 @@ public final class CastUtil {
 
         return booleanValue;
     }
-
-
 }
