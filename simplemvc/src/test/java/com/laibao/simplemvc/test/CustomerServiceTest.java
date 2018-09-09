@@ -25,7 +25,7 @@ public class CustomerServiceTest {
 
     @Before
     public void init() {
-        new CustomerServiceTest();
+        //TODO
     }
 
     @Test
