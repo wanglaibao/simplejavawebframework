@@ -11,6 +11,7 @@
         <module>simpleservletjspweb</module>
         <module>simplemvc</module>
         <module>smartframework</module>
+        <module>smartmvc</module>
     </modules>
     <packaging>pom</packaging>
 

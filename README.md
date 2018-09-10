@@ -38,6 +38,29 @@ https://github.com/chengzhaobin
 
 
 
+
+#### 中科大 数学分析 和 线性代数 视频
+
+
+[线性代数]  (http://www.21edu8.com/university/gonggong/10698/show.html?10698-0-0)
+
+http://www.21edu8.com/university/gonggong/10698/
+
+
+[数学分析]  (http://www.21edu8.com/university/ligong/10700/show.html?10700-0-0)
+
+http://www.21edu8.com/university/ligong/10700/
+
+
+http://www.panduoduo.net/r/31041811
+
+[线性代数_12_中科大(龚升)] (http://www.panduoduo.net/r/35116300)
+
+
+
+https://www.douban.com/doulist/990731/?start=0&sort=seq&playable=0&sub_type=
+
+
 [轻量级 Java Web 框架] https://gitee.com/huangyong/smart-framework
 
 
