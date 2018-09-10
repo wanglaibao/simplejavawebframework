@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService{
     public List<Customer> getCustomerList(String keyWord) {
         List<Customer> customerList = new ArrayList<>();
 //        Connection connection = null;
-        String sql = "select * from customer";
+//        String sql = "select * from customer";
 //        try {
 
 //            connection = DataBaseHelper.getConnection();
@@ -44,31 +44,28 @@ public class CustomerServiceImpl implements CustomerService{
         }finally {
             DataBaseHelper.closeConnection(connection);
         }*/
-        customerList = DataBaseHelper.queryEntityList(Customer.class,sql,null);
+        customerList = DataBaseHelper.queryEntityList(Customer.class,null);
         return customerList;
     }
 
     @Override
     public Customer getCustomer(long id) {
-        String sql = "select * from customer where id = ?";
-        return DataBaseHelper.queryEntity(Customer.class,sql,id);
+        //String sql = "select * from customer where id = ?";
+        return DataBaseHelper.queryEntity(Customer.class,id);
     }
 
     @Override
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        //TODO
-        return false;
+        return DataBaseHelper.insertEntity(Customer.class,fieldMap);
     }
 
     @Override
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
-        //TODO
-        return false;
+        return DataBaseHelper.updateEntity(Customer.class,id,fieldMap);
     }
 
     @Override
     public boolean deleteCustomer(long id) {
-        //TODO
-        return false;
+        return DataBaseHelper.deleteEntity(Customer.class,id);
     }
 }
