@@ -2,6 +2,7 @@ package com.laibao.simplemvc.helper;
 
 import com.laibao.simplemvc.util.CollectionUtil;
 import com.laibao.simplemvc.util.PropsUtil;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -9,6 +10,10 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,22 +35,30 @@ public final class DataBaseHelper {
     private static final String USERNAME;
     private static final String PASSWORD;
 
-    private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<>();
-
-    private static final QueryRunner  QUERY_RUNNER = new QueryRunner();
+    private static final ThreadLocal<Connection> CONNECTION_HOLDER;
+    private static final QueryRunner  QUERY_RUNNER;
+    private static final BasicDataSource DATA_SOURCE;
 
     //静态代码块不可以位于接口中
     static {
+        CONNECTION_HOLDER = new ThreadLocal<>();
+        QUERY_RUNNER = new QueryRunner();
+
         Properties dbConfigProperty = PropsUtil.loadProps("config.properties");
         DRIVER = dbConfigProperty.getProperty("jdbc.driver");
         URL = dbConfigProperty.getProperty("jdbc.url");
         USERNAME = dbConfigProperty.getProperty("jdbc.username");
         PASSWORD = dbConfigProperty.getProperty("jdbc.password");
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("can not load jdbc driver",e);
-        }
+//        try {
+//            Class.forName(DRIVER);
+//        } catch (ClassNotFoundException e) {
+//            LOGGER.error("can not load jdbc driver",e);
+//        }
+        DATA_SOURCE = new BasicDataSource();
+        DATA_SOURCE.setDriverClassName(DRIVER);
+        DATA_SOURCE.setUrl(URL);
+        DATA_SOURCE.setUsername(USERNAME);
+        DATA_SOURCE.setPassword(PASSWORD);
     }
 
     public static Connection getConnection() {
@@ -53,7 +66,8 @@ public final class DataBaseHelper {
         try {
             connection = CONNECTION_HOLDER.get();
             if (connection == null) {
-                connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+                //connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+                connection = DATA_SOURCE.getConnection();
             }
         } catch (SQLException e) {
             LOGGER.error("get connection failure",e);
@@ -77,20 +91,20 @@ public final class DataBaseHelper {
     public static void closeConnection() {
         Connection connection = CONNECTION_HOLDER.get();
         if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                LOGGER.error("close connection failure",e);
-            }finally {
-                CONNECTION_HOLDER.remove();
-            }
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                LOGGER.error("close connection failure",e);
+//            }finally {
+//                CONNECTION_HOLDER.remove();
+//            }
+            CONNECTION_HOLDER.remove();
         }
     }
 
     /**
      * 针对单表的查询
      * @param entityClass
-     * @param sql
      * @param params
      * @param <T>
      * @return
@@ -209,6 +223,20 @@ public final class DataBaseHelper {
     public static <T> boolean deleteEntity(Class<T> entityClass,long id) {
         String sql = "DELETE FROM " + getTableName(entityClass) + " WHERE id = ? ";
         return executeUpdate(sql,id) == 1;
+    }
+
+    public static void executeSqlScript(String fileName) {
+        InputStream ins = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(ins));
+        try {
+            String sql = null;
+            while ((sql = reader.readLine()) != null) {
+                executeUpdate(sql);
+            }
+        } catch (IOException e) {
+            LOGGER.error("execute sql script failure",e);
+            throw new RuntimeException(e);
+        }
     }
 
     private static String getTableName(Class<?> entityClass) {
