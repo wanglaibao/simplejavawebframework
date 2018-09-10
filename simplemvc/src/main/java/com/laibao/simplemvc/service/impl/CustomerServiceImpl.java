@@ -50,8 +50,8 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer getCustomer(long id) {
-        //TODO
-        return null;
+        String sql = "select * from customer where id = ?";
+        return DataBaseHelper.queryEntity(Customer.class,sql,id);
     }
 
     @Override

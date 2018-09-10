@@ -39,6 +39,7 @@ public class CustomerServiceTest {
     public void getCustomerTest() {
         long id = 1;
         Customer customer = customerService.getCustomer(id);
+        System.out.println(JSON.toJSONString(customer));
         Assert.assertNotNull(customer);
     }
 

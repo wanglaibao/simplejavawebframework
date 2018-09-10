@@ -1,6 +1,5 @@
 package com.laibao.simplemvc.helper;
 
-import com.laibao.simplemvc.service.impl.CustomerServiceImpl;
 import com.laibao.simplemvc.util.PropsUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -28,6 +27,8 @@ public final class DataBaseHelper {
     private static final String USERNAME;
     private static final String PASSWORD;
 
+    private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<>();
+
     private static final QueryRunner  QUERY_RUNNER = new QueryRunner();
 
     //静态代码块不可以位于接口中
@@ -47,19 +48,38 @@ public final class DataBaseHelper {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            connection = CONNECTION_HOLDER.get();
+            if (connection == null) {
+                connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            }
         } catch (SQLException e) {
             LOGGER.error("get connection failure",e);
+        }finally {
+            CONNECTION_HOLDER.set(connection);
         }
         return connection;
     }
 
+  /*
     public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {
                 LOGGER.error("close connection failure",e);
+            }
+        }
+    }*/
+
+    public static void closeConnection() {
+        Connection connection = CONNECTION_HOLDER.get();
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                LOGGER.error("close connection failure",e);
+            }finally {
+                CONNECTION_HOLDER.remove();
             }
         }
     }
@@ -73,7 +93,8 @@ public final class DataBaseHelper {
             LOGGER.error("query entity list failure",e);
             throw new RuntimeException(e);
         }finally {
-            closeConnection(connection);
+            //closeConnection(connection);
+            closeConnection();
         }
         return entityList;
     }
@@ -87,7 +108,8 @@ public final class DataBaseHelper {
             LOGGER.error("query entity failure",e);
             throw new RuntimeException(e);
         }finally {
-            closeConnection(connection);
+            //closeConnection(connection);
+            closeConnection();
         }
         return entity;
     }
