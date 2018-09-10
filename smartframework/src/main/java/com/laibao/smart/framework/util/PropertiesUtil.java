@@ -1,6 +1,5 @@
 package com.laibao.smart.framework.util;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +13,10 @@ import java.util.Properties;
  * @date 2018-09-09
  * @version 1.0
  */
-public final class PropertiesUtil {
-    private static final Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
+public interface PropertiesUtil {
+    Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
 
-    public static Properties loadProps(String fileName) {
+    static Properties loadProps(String fileName) {
         Properties properties = null;
         InputStream inputStream = null;
         try {
@@ -41,11 +40,11 @@ public final class PropertiesUtil {
         return properties;
     }
 
-    public static String getString(Properties properties,String key) {
+    static String getString(Properties properties,String key) {
         return getString(properties, key,"");
     }
 
-    public static String getString(Properties properties, String key, String defaultValue) {
+    static String getString(Properties properties, String key, String defaultValue) {
         String value = defaultValue;
         if(properties.containsKey(key)) {
             value = properties.getProperty(key);
@@ -53,11 +52,11 @@ public final class PropertiesUtil {
         return value;
     }
 
-    public static int getInt(Properties properties,String key) {
+    static int getInt(Properties properties,String key) {
         return getInt(properties, key,0);
     }
 
-    private static int getInt(Properties properties, String key, int defaultValue) {
+    static int getInt(Properties properties, String key, int defaultValue) {
         int value = defaultValue;
         if(properties.containsKey(key)) {
             value=CastUtil.castInt(properties.getProperty(key));
@@ -65,28 +64,39 @@ public final class PropertiesUtil {
         return value;
     }
 
-    public static int getLong(Properties properties,String key) {
+    static long getLong(Properties properties,String key) {
         return getLong(properties, key,0);
     }
 
-    private static int getLong(Properties properties, String key, int defaultValue) {
-        int value = defaultValue;
+    static long getLong(Properties properties, String key, int defaultValue) {
+        long value = defaultValue;
         if(properties.containsKey(key)) {
             value = CastUtil.castLong(properties.getProperty(key));
         }
         return value;
     }
 
-    public static boolean getBoolean(Properties props,String key) {
+    static double getDouble(Properties properties,String key) {
+        return getDouble(properties, key,0.0);
+    }
+
+    static double getDouble(Properties properties, String key, double defaultValue) {
+        double value = defaultValue;
+        if(properties.containsKey(key)) {
+            value = CastUtil.castDouble(properties.getProperty(key));
+        }
+        return value;
+    }
+
+    static boolean getBoolean(Properties props,String key) {
         return getBoolean(props, key,false);
     }
 
-    private static boolean getBoolean(Properties props, String key, boolean defaultValue) {
+    static boolean getBoolean(Properties props, String key, boolean defaultValue) {
         boolean value=defaultValue;
         if(props.containsKey(key)) {
             value=CastUtil.castBoolean(props.getProperty(key));
         }
         return value;
     }
-
 }
