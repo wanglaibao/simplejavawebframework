@@ -10,6 +10,7 @@
     <modules>
         <module>simpleservletjspweb</module>
         <module>simplemvc</module>
+        <module>smartframework</module>
     </modules>
     <packaging>pom</packaging>
 
