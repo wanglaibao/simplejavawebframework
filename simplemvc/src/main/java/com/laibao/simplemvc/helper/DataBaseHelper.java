@@ -180,7 +180,7 @@ public final class DataBaseHelper {
             values.append("?, ");
         });
         columns.replace(columns.lastIndexOf(", "),columns.length(),")");
-        values.replace(values.lastIndexOf("?, "),values.length(),")");
+        values.replace(values.lastIndexOf(", "),values.length(),")");
         sql += columns + " VALUES " + values;
         Object[] params = fieldMap.values().toArray();
         return executeUpdate(sql,params) == 1;
@@ -194,9 +194,9 @@ public final class DataBaseHelper {
         String sql = "UPDATE " + getTableName(entityClass) + " SET ";
         StringBuilder columns = new StringBuilder();
         fieldMap.forEach((key,value) -> {
-            columns.append(key).append("=?, ");
+            columns.append(key).append(" = ?, ");
         });
-        sql += columns.substring(0,columns.lastIndexOf(", ")) + "WHERE id=? ";
+        sql += columns.substring(0,columns.lastIndexOf(", ")) + " WHERE id = ? ";
 
         List<Object> paramsList = new ArrayList<>();
         paramsList.addAll(fieldMap.values());
@@ -207,7 +207,7 @@ public final class DataBaseHelper {
     }
 
     public static <T> boolean deleteEntity(Class<T> entityClass,long id) {
-        String sql = "DELETE FROM " + getTableName(entityClass) + "WHERE id=? ";
+        String sql = "DELETE FROM " + getTableName(entityClass) + " WHERE id = ? ";
         return executeUpdate(sql,id) == 1;
     }
 
