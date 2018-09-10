@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * @author laibao wang
@@ -21,27 +22,29 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public List<Customer> getCustomerList(String keyWord) {
         List<Customer> customerList = new ArrayList<>();
-        Connection connection = null;
-        try {
-            connection = DataBaseHelper.getConnection();
-            String sql = "select * from customer";
-            PreparedStatement pstm = connection.prepareStatement(sql);
-            ResultSet resultSet = pstm.executeQuery();
-            while (resultSet.next()) {
-                Customer customer = new Customer();
-                customer.setId(resultSet.getLong("id"));
-                customer.setName(resultSet.getString("name"));
-                customer.setContact(resultSet.getString("contact"));
-                customer.setEmail(resultSet.getString("email"));
-                customer.setTelephone(resultSet.getString("telephone"));
-                customer.setRemark(resultSet.getString("remark"));
-                customerList.add(customer);
-            }
-        } catch (SQLException e) {
+//        Connection connection = null;
+        String sql = "select * from customer";
+//        try {
+
+//            connection = DataBaseHelper.getConnection();
+//            PreparedStatement pstm = connection.prepareStatement(sql);
+//            ResultSet resultSet = pstm.executeQuery();
+//            while (resultSet.next()) {
+//                Customer customer = new Customer();
+//                customer.setId(resultSet.getLong("id"));
+//                customer.setName(resultSet.getString("name"));
+//                customer.setContact(resultSet.getString("contact"));
+//                customer.setEmail(resultSet.getString("email"));
+//                customer.setTelephone(resultSet.getString("telephone"));
+//                customer.setRemark(resultSet.getString("remark"));
+//                customerList.add(customer);
+//            }
+/*        } catch (SQLException e) {
             LOGGER.error("execute sql error",e);
         }finally {
             DataBaseHelper.closeConnection(connection);
-        }
+        }*/
+        customerList = DataBaseHelper.queryEntityList(Customer.class,sql,null);
         return customerList;
     }
 
