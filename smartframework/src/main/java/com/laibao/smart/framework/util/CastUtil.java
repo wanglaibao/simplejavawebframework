@@ -68,11 +68,11 @@ public interface CastUtil {
         return longValue;
     }
 
-    static Double castDouble(Object obj) {
+    static double castDouble(Object obj) {
         return castDouble(obj,0);
     }
 
-    static Double castDouble(Object obj, double defaultValue) {
+    static double castDouble(Object obj, double defaultValue) {
         double doubleValue = defaultValue;
         if(obj != null) {
             String strValue = castString(obj);
