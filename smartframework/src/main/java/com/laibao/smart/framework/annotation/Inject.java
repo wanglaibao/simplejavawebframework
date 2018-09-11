@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  *
- * @ClassName Inject
- * @Description 字段注解
+ * 字段注解
  * @author laibao wang
  * @date 2018-09-11
  * @version 1.0

@@ -6,8 +6,7 @@ import com.laibao.smart.framework.util.PropertiesUtil;
 import java.util.Properties;
 
 /**
- * @ClassName ConfigHelper
- * @Description 属性文件 辅助类
+ * 属性文件 辅助类
  * @author laibao wang
  * @date 2018-09-09
  * @version 1.0

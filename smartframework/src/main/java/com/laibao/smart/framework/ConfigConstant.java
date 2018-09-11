@@ -1,8 +1,7 @@
 package com.laibao.smart.framework;
 
 /**
- * @ClassName ConfigConstant
- * @Description 提供相关配置项常量
+ * 相关配置项常量
  * @author laibao wang
  * @date 2018-09-09
  * @version 1.0
