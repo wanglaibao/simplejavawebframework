@@ -12,7 +12,7 @@ public interface CastUtil {
     Logger logger = LoggerFactory.getLogger(CastUtil.class);
 
     /**
-     * @Description:转为String类型
+     * 转为String类型
      * @param obj
      * @return String
      */
@@ -21,7 +21,7 @@ public interface CastUtil {
     }
 
     /**
-     * @Description: 转为String类型（提供默认值）
+     * 转为String类型（提供默认值）
      * @param obj
      * @param defaultValue
      * @return String

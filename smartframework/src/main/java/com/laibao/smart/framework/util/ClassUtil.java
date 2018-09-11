@@ -15,7 +15,7 @@ public interface ClassUtil {
     Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
 
     /**
-     * @Description: 获取类加载器
+     * 获取类加载器
      * @return ClassLoader
      */
     static ClassLoader getClassLoader() {
