@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Set;
 
 /**
- * @ClassName ClassUtil
- * @Description 类操作工具类
+ * 类操作工具类
  * @author laibao wang
  * @date 2018-09-11
  * @version 1.0
