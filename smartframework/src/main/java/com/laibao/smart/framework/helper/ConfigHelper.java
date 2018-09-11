@@ -15,7 +15,7 @@ public interface ConfigHelper {
      Properties CONFIG_PROPS = PropertiesUtil.loadProps(ConfigConstant.CONFIG_FILE);
 
     /**
-     * @Description: 获取jdbc驱动
+     * 获取jdbc驱动
      * @return String
      */
      static String getJdbcDriver() {
@@ -23,7 +23,7 @@ public interface ConfigHelper {
      }
 
     /**
-     * @Description: 获取jdbc url
+     * 获取jdbc url
      * @return String
      */
      static String getJdbcUrl() {
@@ -31,23 +31,23 @@ public interface ConfigHelper {
      }
 
      /**
-     * @Description: 获取jdbc 用户名
+     * 获取jdbc 用户名
      * @return String
      */
-     static String getJdbcUsername() {
+     static String getJdbcUserName() {
         return PropertiesUtil.getString(CONFIG_PROPS,ConfigConstant.JDBC_USERNAME);
      }
 
      /**
-      * @Description: 获取jdbc 密码
+      * 获取jdbc 密码
       * @return String
       */
-      static String getJdbcPassword() {
+      static String getJdbcPassWord() {
         return PropertiesUtil.getString(CONFIG_PROPS,ConfigConstant.JDBC_PASSWORD);
       }
 
       /**
-       * @Description: 获取应用基础报名
+       * 获取应用基础报名
        * @return String
        */
        static String getAppBasePackage() {
@@ -55,8 +55,7 @@ public interface ConfigHelper {
        }
 
       /**
-       *
-       * @Description: 获取应用 jsp 路径
+       * 获取应用 jsp 路径
        * @return String    返回类型
        */
        static String getAppJspPath() {
@@ -64,7 +63,7 @@ public interface ConfigHelper {
        }
 
        /**
-        * @Description: 获取应用 静态资源路径
+        * 获取应用 静态资源路径
         * @return String
         */
         static String getAppAssetPath() {
