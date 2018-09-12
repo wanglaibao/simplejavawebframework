@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  * @version 1.0
  */
 public interface CodecUtil {
-    Logger logger = LoggerFactory.getLogger(ClassUtil.class);
+    Logger logger = LoggerFactory.getLogger(CodecUtil.class);
 
     String DEFAULT_CHARSET  = String.valueOf(StandardCharsets.UTF_8);
 
