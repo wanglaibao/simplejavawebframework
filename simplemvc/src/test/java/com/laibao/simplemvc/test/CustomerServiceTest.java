@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,5 +74,11 @@ public class CustomerServiceTest {
         long id = 3;
         boolean flag = customerService.deleteCustomer(id);
         Assert.assertTrue(flag);
+    }
+
+    @Test
+    public void testCharSet() {
+        String value = String.valueOf(StandardCharsets.UTF_8);
+        System.out.println("value : " + value);
     }
 }

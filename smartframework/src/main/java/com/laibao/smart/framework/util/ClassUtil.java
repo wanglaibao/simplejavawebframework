@@ -12,7 +12,7 @@ import java.util.Set;
  * @version 1.0
  */
 public interface ClassUtil {
-    Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
+    Logger logger = LoggerFactory.getLogger(ClassUtil.class);
 
     /**
      * 获取类加载器
@@ -27,7 +27,7 @@ public interface ClassUtil {
         try {
             clazz =Class.forName(className,isInitialized,getClassLoader());
         } catch (ClassNotFoundException e) {
-            LOGGER.error("load class failure",e);
+            logger.error("load class failure",e);
             throw new RuntimeException(e);
         }
         return clazz;
