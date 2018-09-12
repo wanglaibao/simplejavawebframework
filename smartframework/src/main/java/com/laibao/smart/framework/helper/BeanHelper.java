@@ -1,7 +1,6 @@
 package com.laibao.smart.framework.helper;
 
-import com.laibao.smart.framework.util.ReflectionUtil;
-
+import com.laibao.smart.framework.util.BeanInstanceUtil;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +18,7 @@ public final class BeanHelper {
     static {
         Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
         beanClassSet.forEach(clazz -> {
-            Object obj = ReflectionUtil.newInstance(clazz);
+            Object obj = BeanInstanceUtil.newInstance(clazz);
             BEAN_MAP.put(clazz,obj);
         });
     }
