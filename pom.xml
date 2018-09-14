@@ -12,6 +12,7 @@
         <module>simplemvc</module>
         <module>smartframework</module>
         <module>smartmvc</module>
+        <module>simpleaop</module>
     </modules>
     <packaging>pom</packaging>
 
