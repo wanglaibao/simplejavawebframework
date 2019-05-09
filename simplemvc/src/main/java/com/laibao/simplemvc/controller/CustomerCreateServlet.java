@@ -1,6 +1,5 @@
 package com.laibao.simplemvc.controller;
 
-import com.sun.xml.internal.bind.v2.TODO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
