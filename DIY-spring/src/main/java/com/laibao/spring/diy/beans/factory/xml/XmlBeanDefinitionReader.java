@@ -2,7 +2,7 @@ package com.laibao.spring.diy.beans.factory.xml;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
 import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
-import com.laibao.spring.diy.beans.factory.support.BeanDefinitionRegister;
+import com.laibao.spring.diy.beans.factory.support.BeanDefinitionRegistry;
 import com.laibao.spring.diy.beans.factory.support.GenericBeanDefinition;
 import com.laibao.spring.diy.util.ClassUtils;
 import org.dom4j.Document;
@@ -20,9 +20,9 @@ public class XmlBeanDefinitionReader {
 
     private static final String CLASS_ATTRIBUTE = "class";
 
-    private BeanDefinitionRegister register;
+    private BeanDefinitionRegistry register;
 
-    public XmlBeanDefinitionReader(BeanDefinitionRegister register) {
+    public XmlBeanDefinitionReader(BeanDefinitionRegistry register) {
         this.register = register;
     }
 
