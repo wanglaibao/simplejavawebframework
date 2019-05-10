@@ -1,9 +1,11 @@
 package com.laibao.spring.diy.test.v1;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
+import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
 import com.laibao.spring.diy.beans.factory.BeanFactory;
 import com.laibao.spring.diy.beans.factory.support.DefaultBeanFactory;
 import com.laibao.spring.diy.service.v1.PetStoreService;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +29,12 @@ public class BeanFactoryTest {
 
     @Test
     public void testInvalidXML() {
-
+        try{
+            new DefaultBeanFactory("xxxxxx-v1.xml");
+        }catch (BeanDefinitionStoreException e) {
+            return;
+        }
+        Assert.fail("expect BeanDefinitionStoreException");
     }
 
     @Test

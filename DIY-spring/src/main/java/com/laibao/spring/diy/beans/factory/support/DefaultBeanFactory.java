@@ -1,6 +1,7 @@
 package com.laibao.spring.diy.beans.factory.support;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
+import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
 import com.laibao.spring.diy.beans.factory.BeanFactory;
 import com.laibao.spring.diy.util.ClassUtils;
 import org.dom4j.Document;
@@ -46,7 +47,8 @@ public class DefaultBeanFactory implements BeanFactory {
             }
 
         } catch (DocumentException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            throw new BeanDefinitionStoreException("IOException parsing XML document ",e.getCause());
         }finally {
             if (inputStream != null) {
                 try {
