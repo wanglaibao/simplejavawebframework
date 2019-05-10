@@ -1,6 +1,7 @@
 package com.laibao.spring.diy.test.v1;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
+import com.laibao.spring.diy.beans.factory.BeanCreationException;
 import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
 import com.laibao.spring.diy.beans.factory.BeanFactory;
 import com.laibao.spring.diy.beans.factory.support.DefaultBeanFactory;
@@ -30,7 +31,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidXML() {
         try{
-            new DefaultBeanFactory("xxxxxx-v1.xml");
+           new DefaultBeanFactory("xxx-v1.xml");
         }catch (BeanDefinitionStoreException e) {
             return;
         }
@@ -39,6 +40,12 @@ public class BeanFactoryTest {
 
     @Test
     public void testInvalidBean(){
-
+        try{
+            BeanFactory factory = new DefaultBeanFactory("petstore-v1.xml");
+            factory.getBean("invalidBean");
+        }catch (BeanCreationException e) {
+            return;
+        }
+        Assert.fail("expect BeanCreationException");
     }
 }
