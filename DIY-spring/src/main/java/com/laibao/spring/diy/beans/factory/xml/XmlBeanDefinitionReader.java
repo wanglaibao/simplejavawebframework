@@ -26,7 +26,7 @@ public class XmlBeanDefinitionReader {
         this.register = register;
     }
 
-    private void loadBeanDefinition(String configFile) {
+    public void loadBeanDefinition(String configFile) {
 
         InputStream inputStream = null;
         try {
