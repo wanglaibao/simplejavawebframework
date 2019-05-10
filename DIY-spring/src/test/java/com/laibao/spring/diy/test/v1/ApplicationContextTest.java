@@ -13,7 +13,7 @@ public class ApplicationContextTest {
     @Test
     public void testGetBean() {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext();
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("petstore-v1.xml");
 
         PetStoreService petStoreService = (PetStoreService) applicationContext.getBean("petStore");
 
