@@ -1,6 +1,7 @@
 package com.laibao.spring.diy.beans.factory.support;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
+import com.laibao.spring.diy.beans.factory.BeanCreationException;
 import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
 import com.laibao.spring.diy.beans.factory.BeanFactory;
 import com.laibao.spring.diy.util.ClassUtils;
@@ -70,20 +71,26 @@ public class DefaultBeanFactory implements BeanFactory {
 
         BeanDefinition beanDefinition = getBeanDefinition(beanId);
         if (beanDefinition == null) {
-            return null;
+            //return null;
+            throw new BeanCreationException("Bean Definition dose not exist");
         }
         ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
         String beanClassName = beanDefinition.getBeanClassName();
         try {
             Class<?> clz = classLoader.loadClass(beanClassName);
             return clz.newInstance();
-        } catch (ClassNotFoundException e) {
+        }catch (Exception e) {
+            throw new BeanCreationException("bean creation for "+beanClassName+ " failed ",e);
+        }
+        /*
+        catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
-        return null;
+        */
+        //return null;
     }
 }
