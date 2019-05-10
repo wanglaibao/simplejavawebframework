@@ -24,4 +24,14 @@ public class BeanFactoryTest {
 
         assertNotNull(petStoreService);
     }
+
+    @Test
+    public void testInvalidXML() {
+
+    }
+
+    @Test
+    public void testInvalidBean(){
+
+    }
 }
