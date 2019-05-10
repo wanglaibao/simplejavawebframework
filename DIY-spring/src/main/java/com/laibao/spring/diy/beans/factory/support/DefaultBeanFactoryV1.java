@@ -3,7 +3,7 @@ package com.laibao.spring.diy.beans.factory.support;
 import com.laibao.spring.diy.beans.BeanDefinition;
 import com.laibao.spring.diy.beans.factory.BeanCreationException;
 import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
-import com.laibao.spring.diy.beans.factory.BeanFactory;
+import com.laibao.spring.diy.beans.factory.BeanFactoryV1;
 import com.laibao.spring.diy.util.ClassUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DefaultBeanFactory implements BeanFactory {
+public class DefaultBeanFactoryV1 implements BeanFactoryV1 {
 
     private static final String ID_ATTRIBUTE = "id";
 
@@ -24,7 +24,7 @@ public class DefaultBeanFactory implements BeanFactory {
 
     private Map<String,BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 
-    public DefaultBeanFactory(String configFile) {
+    public DefaultBeanFactoryV1(String configFile) {
         loadBeanDefinition(configFile);
     }
 
