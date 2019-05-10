@@ -3,8 +3,8 @@ package com.laibao.spring.diy.test.v1;
 import com.laibao.spring.diy.beans.BeanDefinition;
 import com.laibao.spring.diy.beans.factory.BeanCreationException;
 import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
-import com.laibao.spring.diy.beans.factory.BeanFactory;
-import com.laibao.spring.diy.beans.factory.support.DefaultBeanFactory;
+import com.laibao.spring.diy.beans.factory.BeanFactoryV1;
+import com.laibao.spring.diy.beans.factory.support.DefaultBeanFactoryV1;
 import com.laibao.spring.diy.service.v1.PetStoreService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,12 +12,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class BeanFactoryTest {
+public class BeanFactoryV1Test {
 
     @Test
     public void testGetBean() {
 
-        BeanFactory factory = new DefaultBeanFactory("petstore-v1.xml");
+        BeanFactoryV1 factory = new DefaultBeanFactoryV1("petstore-v1.xml");
 
         BeanDefinition beanDefinition = factory.getBeanDefinition("petStore");
 
@@ -31,7 +31,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidXML() {
         try{
-           new DefaultBeanFactory("xxx-v1.xml");
+           new DefaultBeanFactoryV1("xxx-v1.xml");
         }catch (BeanDefinitionStoreException e) {
             return;
         }
@@ -41,7 +41,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidBean(){
         try{
-            BeanFactory factory = new DefaultBeanFactory("petstore-v1.xml");
+            BeanFactoryV1 factory = new DefaultBeanFactoryV1("petstore-v1.xml");
             factory.getBean("invalidBean");
         }catch (BeanCreationException e) {
             return;
