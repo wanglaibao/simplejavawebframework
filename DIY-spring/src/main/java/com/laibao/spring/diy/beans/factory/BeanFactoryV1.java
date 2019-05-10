@@ -2,7 +2,7 @@ package com.laibao.spring.diy.beans.factory;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
 
-public interface BeanFactory {
+public interface BeanFactoryV1 {
 
     /**
      *
