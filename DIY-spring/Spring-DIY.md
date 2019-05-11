@@ -11,11 +11,15 @@
 ### DIY的过程
 
 ```
-    1:从简单的结构开始[基于XML的BeanFactory,只有缺省构造函数的Bean]
-    2:setter注入,有参构造函数
-    3:注解,auto-scan
-    4:基于Java动态代理来实现AOP
-    5:基于Cglib来实现AOP
+    1:  从简单的结构开始[基于XML的BeanFactory,只有缺省构造函数的Bean]
+
+    2:  setter注入和有参构造函数
+
+    3:  注解和auto-scan扫描
+
+    4:  基于Java动态代理来实现AOP
+
+    5:  基于Cglib来实现AOP
 ```
 
 ### DIY-Spring 大纲
