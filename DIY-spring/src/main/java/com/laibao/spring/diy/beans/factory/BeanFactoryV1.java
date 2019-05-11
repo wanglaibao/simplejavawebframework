@@ -2,20 +2,18 @@ package com.laibao.spring.diy.beans.factory;
 
 import com.laibao.spring.diy.beans.BeanDefinition;
 
-/**
- *  BeanFactoryV1
- *  违背了单一职责原则 SRP Single Re Pricipal
- *  所以需要对进行重构使之满足单一职责原则
- *
- */
-
 public interface BeanFactoryV1 {
 
     /**
      *
      * @param beanId
      * @return BeanDefinition
+     * 这个方法应该被删除以便实现类只做一件事情[SRP],请参考BeanFactoryV2;
+     * 我们可以将该方法抽取到XmlBeanDefinitionReader类中，
+     * XmlBeanDefinitionReader类只做 .xml 配置文件的加载和读取,以便形成BeanDefinition定义
+     *
      */
+    @Deprecated
     BeanDefinition getBeanDefinition(String beanId);
 
 
