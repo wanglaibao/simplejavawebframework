@@ -7,6 +7,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({BeanFactoryV1Test.class,
                     BeanFactoryV2Test.class,
                     ApplicationContextV1Test.class,
+                    ApplicationContextV2Test.class,
+                    ApplicationContextV3Test.class,
                     ResourceV1Test.class})
 public class V1AllTest {
 }
