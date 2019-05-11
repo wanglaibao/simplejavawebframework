@@ -15,9 +15,9 @@ import static org.junit.Assert.assertEquals;
 
 public class BeanFactoryV2Test {
 
-    private DefaultBeanFactoryV2 factory = null;
+    private DefaultBeanFactoryV2 factory;
 
-    private XmlBeanDefinitionReader reader = null;
+    private XmlBeanDefinitionReader reader;
 
     @Before
     public void setUp() {

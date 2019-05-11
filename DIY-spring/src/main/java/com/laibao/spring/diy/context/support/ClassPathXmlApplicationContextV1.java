@@ -2,14 +2,13 @@ package com.laibao.spring.diy.context.support;
 
 import com.laibao.spring.diy.beans.factory.support.DefaultBeanFactoryV2;
 import com.laibao.spring.diy.beans.factory.xml.XmlBeanDefinitionReader;
-import com.laibao.spring.diy.context.ApplicationContext;
+import com.laibao.spring.diy.context.ApplicationContextV1;
 
-public class ClassPathXmlApplicationContext implements ApplicationContext {
+public class ClassPathXmlApplicationContextV1 implements ApplicationContextV1 {
 
-    private DefaultBeanFactoryV2 factory = null;
+    private DefaultBeanFactoryV2 factory;
 
-
-    public ClassPathXmlApplicationContext(String configFile) {
+    public ClassPathXmlApplicationContextV1(String configFile) {
         factory = new DefaultBeanFactoryV2();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
         reader.loadBeanDefinition(configFile);
