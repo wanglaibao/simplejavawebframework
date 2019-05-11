@@ -16,6 +16,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
+/**
+ *  DefaultBeanFactoryV1
+ *  违背了单一职责原则 SRP[Single Responsibility Principle]
+ *  所以需要对进行重构使之满足单一职责原则
+ *
+ */
+
 public class DefaultBeanFactoryV1 implements BeanFactoryV1 {
 
     private static final String ID_ATTRIBUTE = "id";
@@ -28,6 +36,7 @@ public class DefaultBeanFactoryV1 implements BeanFactoryV1 {
         loadBeanDefinition(configFile);
     }
 
+    @Deprecated
     private void loadBeanDefinition(String configFile) {
 
         InputStream inputStream = null;
