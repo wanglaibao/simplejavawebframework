@@ -5,6 +5,7 @@ import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
 import com.laibao.spring.diy.beans.factory.support.DefaultBeanFactoryV2;
 import com.laibao.spring.diy.beans.factory.xml.XmlBeanDefinitionReader;
 import com.laibao.spring.diy.service.v1.PetStoreService;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +24,11 @@ public class BeanFactoryV2Test {
          factory = new DefaultBeanFactoryV2();
 
          reader = new XmlBeanDefinitionReader(factory);
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("进行必要的清理工作");
     }
 
     @Test
