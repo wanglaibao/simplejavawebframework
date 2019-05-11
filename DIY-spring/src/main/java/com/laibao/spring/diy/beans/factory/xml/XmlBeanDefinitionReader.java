@@ -10,8 +10,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Iterator;
 
 public class XmlBeanDefinitionReader {
@@ -32,6 +31,18 @@ public class XmlBeanDefinitionReader {
         try {
             ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
             inputStream = classLoader.getResourceAsStream(configFile);
+
+            /**
+             * 下面的判断是为了兼容从文件系统中读取配置文件
+             */
+            if (inputStream == null) {
+                try {
+                    inputStream = new FileInputStream(new File(configFile));
+                } catch (FileNotFoundException e) {
+                    throw new BeanDefinitionStoreException("IOException parsing XML document ",e.getCause());
+                }
+            }   //判断逻辑结束
+
             SAXReader reader = new SAXReader();
             Document document = reader.read(inputStream);
 
