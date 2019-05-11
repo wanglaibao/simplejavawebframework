@@ -34,7 +34,7 @@
     3:  介绍TDD开发方式以及重构的方法
 ```
 
-* Basic BeanFactory and ApplicationContextV1 [第二周]
+* Basic BeanFactory and ApplicationContext and Resource [第二周]
 
 ```
     1:  最简单的结构,基于XML的BeanFactory,缺省构造函数的Bean
@@ -45,9 +45,11 @@
 
     4:  SRP单一职责的理解和应用[对不合理的地方利用该原则来进行重构]
 
-    5:  ApplicationContext抽象以及ClassPathXmlApplicationContext,FileSystemXmlApplicationContext的实现
+    5:  BeanDefinitionRegistry的抽象
 
-    6:  Resource,BeanDefinitionRegistry的抽象
+    6:  ApplicationContext抽象以及ClassPathXmlApplicationContext,FileSystemXmlApplicationContext的实现
+
+    7:  Resource的抽象以及ClassPathResource,FileSystemResource的实现
 ```
 
 * 实现setter注入 [第三周]
