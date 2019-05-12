@@ -73,21 +73,23 @@
 
 ```
 
-    1:  Bean的Scope问题
+    1:  Bean的Scope问题:Singleton or Prototype
 
-    2:  SingletonBeanRegistry接口
+    2:  修改BeanDefinition的定义以及GenericBeanDefinition默认实现,使他们满足Bean的Scope:Singleton or Prototype
 
-    3:  PropertyValue
+    3:  专门为Singleton Scope而生的SingletonBeanRegistry接口
 
-    4:  RuntimeBeanReference
+    4:  PropertyValue
 
-    5:  BeanDefinitionValueResolve的抽象
+    5:  RuntimeBeanReference
 
-    6:  使用Intospector机制[内省机制]
+    6:  BeanDefinitionValueResolve的抽象
 
-    7:  TypeConverter实现从字符串到特定类型的转换
+    7:  使用Intospector机制[内省机制]
 
-    8:  从createBean【Bean创建】到initiateBean【Bean初始化】和populateBean【注入Bean】的拆分
+    8:  TypeConverter实现从字符串到特定类型的转换
+
+    9:  从createBean【Bean创建】到initiateBean【Bean初始化】和populateBean【注入Bean】的拆分
 
 
 ```
