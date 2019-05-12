@@ -1,11 +1,14 @@
-#           SPRING-DIY
+#           SPRING-DIY || SPRING-DIY || SPRING-DIY || SPRING-DIY
+
 ```
+
   学习Spring框架的主要目的是下面三个
     1:框架背后的设计思想
 
     2:概念抽象[设计人员是如何进行概念抽象的]
 
     3:代码组织结构[设计人员是如何进行代码组织的]
+
 ```
 
 ### DIY的过程
@@ -24,7 +27,7 @@
 
 ### DIY-Spring 大纲
 
-* 概述[第一周]
+* OverView[第一周]
 
 ```
     1:  课程简介
@@ -34,9 +37,10 @@
     3:  介绍TDD开发方式以及重构的方法
 ```
 
-* Basic BeanFactory and ApplicationContext and Resource [第二周]
+* Basic BeanFactory and ApplicationContext and Resource and ClassLoader[第二周]
 
 ```
+
     1:  最简单的结构,基于XML的BeanFactory,缺省构造函数的Bean
 
     2:  BeanDefinition接口和默认实现GenericBeanDefinition
@@ -60,11 +64,15 @@
     11: 抽象ConfigurableFactory接口,提供设置ClassLoader的能力
 
     12：根据ConfigurableFactory来重构有关的类
+
+    13: 如何在抽象类AbstractApplicationContext中传递类加载器ClassLoader
+
 ```
 
-* 实现setter注入 [第三周]
+* Setter Injection [第三周]
 
 ```
+
     1:  Bean的Scope问题
 
     2:  SingletonBeanRegistry接口
@@ -81,11 +89,20 @@
 
     8:  从createBean【Bean创建】到initiateBean【Bean初始化】和populateBean【注入Bean】的拆分
 
-```
-
-* 实现构造函数注入 [第四周]
 
 ```
+
+* Constructor Injection [第四周]
+
+```
+
+    1:  引入ConstructorArgument
+
+    2:  如何找到合适的构造器
+
+    3:  ConstrutorResolver
+
+    4:  TestCase的整理引入TestSuit
 
 ```
 
