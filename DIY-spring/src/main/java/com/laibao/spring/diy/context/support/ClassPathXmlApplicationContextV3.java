@@ -3,7 +3,7 @@ package com.laibao.spring.diy.context.support;
 import com.laibao.spring.diy.core.io.ClassPathResource;
 import com.laibao.spring.diy.core.io.Resource;
 
-public class ClassPathXmlApplicationContextV3 extends AbstractApplicationContext{
+public class ClassPathXmlApplicationContextV3 extends AbstractApplicationContextV1 {
 
 
     public ClassPathXmlApplicationContextV3(String configFile) {
