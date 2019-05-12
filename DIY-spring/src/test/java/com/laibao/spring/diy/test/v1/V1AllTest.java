@@ -9,6 +9,7 @@ import org.junit.runners.Suite;
                     ApplicationContextV1Test.class,
                     ApplicationContextV2Test.class,
                     ApplicationContextV3Test.class,
+                    ApplicationContextV4Test.class,
                     ResourceV1Test.class})
 public class V1AllTest {
 }
