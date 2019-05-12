@@ -50,6 +50,16 @@
     6:  ApplicationContext抽象以及ClassPathXmlApplicationContext,FileSystemXmlApplicationContext的实现
 
     7:  Resource的抽象以及ClassPathResource,FileSystemResource的实现
+
+    8:  基于Resource的实现来重构ClassPathXmlApplicationContext,FileSystemXmlApplicationContext的实现
+
+    9:  基于模板设计模式来重构ClassPathXmlApplicationContext,FileSystemXmlApplicationContext的实现
+
+    10: 目前的所有实现中ClassLoader都是默认的，如何进行改造，使能够动态设置类加载器ClassLoader
+
+    11: 抽象ConfigurableFactory接口,提供设置ClassLoader的能力
+
+    12：根据ConfigurableFactory来重构有关的类
 ```
 
 * 实现setter注入 [第三周]
