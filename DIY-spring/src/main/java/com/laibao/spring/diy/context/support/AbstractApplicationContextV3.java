@@ -6,6 +6,10 @@ import com.laibao.spring.diy.context.ApplicationContextV2;
 import com.laibao.spring.diy.core.io.Resource;
 import com.laibao.spring.diy.util.ClassUtils;
 
+/**
+ * 该抽象类增加了在构造函数中对类加载器的引用
+ * 目前还没有在ClassPathXmlApplicationContext中使用
+ */
 public abstract class AbstractApplicationContextV3 implements ApplicationContextV2 {
 
 
