@@ -25,7 +25,9 @@ public class ApplicationContextV2Test {
 
         // D://IdeaProjects//git//simplejavawebframework//DIY-spring//
 
-        ApplicationContextV1 applicationContext = new FileSystemXmlApplicationContextV2("D://IdeaProjects//git//simplejavawebframework//DIY-spring//src//test//resources//petstore-v1.xml");
+        //ApplicationContextV1 applicationContext = new FileSystemXmlApplicationContextV2("D://IdeaProjects//git//simplejavawebframework//DIY-spring//src//test//resources//petstore-v1.xml");
+
+        ApplicationContextV1 applicationContext = new FileSystemXmlApplicationContextV2("src//test//resources//petstore-v1.xml");
 
         PetStoreService petStoreService = (PetStoreService) applicationContext.getBean("petStore");
 
