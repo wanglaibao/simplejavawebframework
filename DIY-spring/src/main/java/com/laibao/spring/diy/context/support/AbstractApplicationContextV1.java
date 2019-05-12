@@ -5,11 +5,11 @@ import com.laibao.spring.diy.beans.factory.xml.XmlBeanDefinitionReaderV2;
 import com.laibao.spring.diy.context.ApplicationContextV1;
 import com.laibao.spring.diy.core.io.Resource;
 
-public abstract class AbstractApplicationContext implements ApplicationContextV1 {
+public abstract class AbstractApplicationContextV1 implements ApplicationContextV1 {
 
     private DefaultBeanFactoryV2 factory;
 
-    protected AbstractApplicationContext(String configFile) {
+    protected AbstractApplicationContextV1(String configFile) {
         factory = new DefaultBeanFactoryV2();
         XmlBeanDefinitionReaderV2 reader = new XmlBeanDefinitionReaderV2(factory);
         Resource resource = this.getResourceByPath(configFile);   //new ClassPathResource(configFile);
