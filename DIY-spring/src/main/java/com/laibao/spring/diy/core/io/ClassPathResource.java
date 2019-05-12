@@ -13,7 +13,8 @@ public class ClassPathResource implements Resource{
     private ClassLoader classLoader;
 
     public ClassPathResource(String path) {
-        init(path,null);
+        //init(path,null);
+        init(path,ClassUtils.getDefaultClassLoader());
     }
 
     public ClassPathResource(String path, ClassLoader classLoader) {
@@ -22,7 +23,8 @@ public class ClassPathResource implements Resource{
 
     private void init(String path, ClassLoader classLoader) {
         this.path = path;
-        this.classLoader = classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader();
+        //this.classLoader = classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader();
+        this.classLoader = classLoader;
     }
 
     @Override
