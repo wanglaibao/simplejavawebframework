@@ -1,5 +1,9 @@
 package com.laibao.spring.diy.beans;
 
+/**
+ * 用于setter方式的注入
+ */
+
 public class PropertyValue {
 
     private final String name;
