@@ -26,7 +26,11 @@ public class ResourceV1Test {
     @Test
     public void testFileSystemResource() throws IOException {
         //下面采用的是绝对路径是一种比较不好的写法，后续可以进行改进
-        Resource resource = new FileSystemResource("D://IdeaProjects//git//simplejavawebframework//DIY-spring//src//test//resources//petstore-v1.xml");
+        //Resource resource = new FileSystemResource("D://IdeaProjects//git//simplejavawebframework//DIY-spring//src//test//resources//petstore-v1.xml");
+
+        //将绝对路径修改为相对路径
+        Resource resource = new FileSystemResource("src//test//resources//petstore-v1.xml");
+
         InputStream inputStream = resource.getInputStream();
         Assert.assertNotNull(inputStream);
         if (inputStream != null) {
