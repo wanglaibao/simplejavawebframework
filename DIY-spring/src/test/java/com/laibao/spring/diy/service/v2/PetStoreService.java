@@ -4,9 +4,8 @@ import com.laibao.spring.diy.dao.v2.AccountDao;
 import com.laibao.spring.diy.dao.v2.ItemDao;
 
 /**
- * v2版本 专门用来进行setter注入测试的
+ * 专门用来进行setter注入测试使用的
  */
-
 public class PetStoreService {
 
     private AccountDao accountDao;

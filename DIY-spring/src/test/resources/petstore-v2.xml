@@ -6,6 +6,7 @@
 
     <bean id="petStore" class="com.laibao.spring.diy.service.v2.PetStoreService" >
         <property name="accountDao" ref="accountDao"/>
+
         <property name="itemDao" ref="itemDao"/>
     </bean>
 
