@@ -1,9 +1,9 @@
 package com.laibao.spring.diy.util;
 
 
-public class ClassUtils {
+public interface ClassUtils {
 
-    public static ClassLoader getDefaultClassLoader() {
+    static ClassLoader getDefaultClassLoader() {
         ClassLoader classLoader = null;
 
         try {

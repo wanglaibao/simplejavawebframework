@@ -1,8 +1,8 @@
 package com.laibao.spring.diy.util;
 
-public abstract class Assert {
+public interface Assert {
 
-    public static void notNull(Object object,String message) {
+    static void notNull(Object object,String message) {
         if (object == null) {
             throw new IllegalArgumentException(message);
         }
