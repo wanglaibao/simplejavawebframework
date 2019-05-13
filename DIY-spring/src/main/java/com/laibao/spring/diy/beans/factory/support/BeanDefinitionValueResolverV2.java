@@ -1,20 +1,11 @@
 package com.laibao.spring.diy.beans.factory.support;
 
-/**
- * 把一个bean的名称【或者全路径名称】 转换成Bean实例的过程也通常称之为Resolve
- *
- * eg: <property name="accountDao" ref="accountDao"/>
- *
- * 我们已经通过属性名称找到了对应的accountDao
- *
- * XXXXResolver就是解决accountDao所对应的对象问题
- *
- */
-public class BeanDefinitionValueResolver extends BeanDefinitionValueResolverTemplate{
 
-    private final DefaultBeanFactoryV5 factory;
+public class BeanDefinitionValueResolverV2 extends BeanDefinitionValueResolverTemplate{
 
-    public BeanDefinitionValueResolver(DefaultBeanFactoryV5 factory) {
+    private final DefaultBeanFactoryV6 factory;
+
+    public BeanDefinitionValueResolverV2(DefaultBeanFactoryV6 factory) {
         this.factory = factory;
     }
 
@@ -34,6 +25,7 @@ public class BeanDefinitionValueResolver extends BeanDefinitionValueResolverTemp
             return ((TypedStringValue) value).getValue();
 
         } else {
+            //
             return new RuntimeException("the value "+ value + " has not implemented");
         }
 
