@@ -33,13 +33,13 @@ public class XmlBeanDefinitionReaderV4 {
 
     private static String SCOPE_ATTRIBUTE = "scope";
 
-    public static final String PROPERTY_ELEMENT = "property";
+    private static final String PROPERTY_ELEMENT = "property";
 
-    public static final String REF_ATTRIBUTE = "ref";
+    private static final String REF_ATTRIBUTE = "ref";
 
-    public static final String VALUE_ATTRIBUTE = "value";
+    private static final String VALUE_ATTRIBUTE = "value";
 
-    public static final String NAME_ATTRIBUTE = "name";
+    private static final String NAME_ATTRIBUTE = "name";
 
     private BeanDefinitionRegistryV3 register;
 
@@ -72,6 +72,7 @@ public class XmlBeanDefinitionReaderV4 {
                     beanDefinition.setScope(element.attributeValue(SCOPE_ATTRIBUTE));
                 }
 
+                //新增对Bean的各种属性的处理
                 parsePropertyElement(element,beanDefinition);
                 register.registerBeanDefinitionV3(id,beanDefinition);
             }
@@ -140,7 +141,8 @@ public class XmlBeanDefinitionReaderV4 {
             return typedStringValue;
 
         } else {
-            throw new RuntimeException(elementName + " must specify a ref or value");
+            //throw new RuntimeException(elementName + " must specify a ref or value");
+            throw new BeanDefinitionStoreException(elementName + " must specify a ref or value");
         }
     }
 }
