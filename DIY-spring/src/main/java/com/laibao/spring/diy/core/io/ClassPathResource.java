@@ -8,24 +8,31 @@ import java.io.InputStream;
 
 public class ClassPathResource implements Resource{
 
-    private String path;
+    private final String path;
 
-    private ClassLoader classLoader;
+    private final ClassLoader classLoader;
 
     public ClassPathResource(String path) {
         //init(path,null);
-        init(path,ClassUtils.getDefaultClassLoader());
+        //init(path,ClassUtils.getDefaultClassLoader());
+        this(path,ClassUtils.getDefaultClassLoader());
     }
 
     public ClassPathResource(String path, ClassLoader classLoader) {
-        init(path,classLoader);
+
+        //init(path,classLoader);
+        this.path = path;
+        //this.classLoader = classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader();
+        this.classLoader = classLoader;
     }
 
+    /*
     private void init(String path, ClassLoader classLoader) {
         this.path = path;
         //this.classLoader = classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader();
         this.classLoader = classLoader;
     }
+    */
 
     @Override
     public InputStream getInputStream() throws IOException {
