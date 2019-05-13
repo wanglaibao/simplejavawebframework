@@ -15,6 +15,11 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 专门用来进行setter注入测试使用的
+ * 目前Bean的属性中只有引用类型的属性
+ * eg: <property name="accountDao" ref="accountDao"/>
+ */
 public class BeanDefinitionTest {
 
     private DefaultBeanFactoryV5 factory;
@@ -38,7 +43,7 @@ public class BeanDefinitionTest {
     }
 
     @Test
-    public void testGetBeanDefinition() {
+    public void testGetBeanDefinition_With_RefProperty_And_No_ValueProperty() {
         //DefaultBeanFactoryV5 factory = new DefaultBeanFactoryV5();
         //XmlBeanDefinitionReaderV4 reader = new XmlBeanDefinitionReaderV4(factory);
         reader.loadBeanDefinition(resource);
