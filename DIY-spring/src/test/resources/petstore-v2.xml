@@ -8,6 +8,8 @@
         <property name="accountDao" ref="accountDao"/>
 
         <property name="itemDao" ref="itemDao"/>
+
+        <property name="owner" value="金戈"/>
     </bean>
 
     <bean id="accountDao" class="com.laibao.spring.diy.dao.v2.AccountDao"></bean>

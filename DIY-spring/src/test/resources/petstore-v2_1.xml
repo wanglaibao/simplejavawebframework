@@ -11,7 +11,7 @@
 
         <property name="owner" value="金戈"/>
 
-        <property name="version" value="2"/>
+        <property name="version" value="100"/>
     </bean>
 
     <bean id="accountDao" class="com.laibao.spring.diy.dao.v2.AccountDao"></bean>
