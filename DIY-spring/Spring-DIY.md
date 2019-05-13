@@ -3,6 +3,7 @@
 ```
 
   学习Spring框架的主要目的是下面三个
+
     1:框架背后的设计思想
 
     2:概念抽象[设计人员是如何进行概念抽象的]
@@ -34,10 +35,10 @@
 
     2:  介绍Spring IOC 和 AOP
 
-    3:  介绍TDD开发方式以及重构的方法
+    3:  介绍TDD开发方式以及Refactoring重构的方法
 ```
 
-* Basic BeanFactory and ApplicationContext and Resource and ClassLoader and Bean Scope[第二周]
+* Basic BeanFactory and ApplicationContext and Resource and ClassLoader and Bean Scope[第二,三周]
 
 ```
 
@@ -75,7 +76,7 @@
 
 ```
 
-* Setter Injection [第三周]
+* Setter Injection [第四,五周]
 
 ```
     1:
@@ -99,7 +100,7 @@
 
 ```
 
-* Constructor Injection [第四周]
+* Constructor Injection [第六周]
 
 ```
 
@@ -113,13 +114,13 @@
 
 ```
 
-* 实现注解和auto-scan [第五周]
+* 实现注解和auto-scan [第七周]
 
 ```
 
 ```
 
-* 实现AOP [第六周]
+* 实现AOP [第八,九,十周]
 
 ```
 
