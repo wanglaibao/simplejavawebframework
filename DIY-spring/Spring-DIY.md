@@ -37,7 +37,7 @@
     3:  介绍TDD开发方式以及重构的方法
 ```
 
-* Basic BeanFactory and ApplicationContext and Resource and ClassLoader[第二周]
+* Basic BeanFactory and ApplicationContext and Resource and ClassLoader and Bean Scope[第二周]
 
 ```
 
@@ -67,17 +67,22 @@
 
     13: 如何在抽象类AbstractApplicationContext中传递类加载器ClassLoader
 
+    14:  Bean的Scope问题:Singleton or Prototype
+
+    15:  修改BeanDefinition的定义以及GenericBeanDefinition默认实现,使他们满足Bean的Scope:Singleton or Prototype
+
+    16:  专门为Singleton Scope而生的SingletonBeanRegistry接口
+
 ```
 
 * Setter Injection [第三周]
 
 ```
+    1:
 
-    1:  Bean的Scope问题:Singleton or Prototype
+    2:
 
-    2:  修改BeanDefinition的定义以及GenericBeanDefinition默认实现,使他们满足Bean的Scope:Singleton or Prototype
-
-    3:  专门为Singleton Scope而生的SingletonBeanRegistry接口
+    3:
 
     4:  PropertyValue
 
