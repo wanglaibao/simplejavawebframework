@@ -8,11 +8,11 @@ import java.beans.PropertyEditor;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimpleTypeCoverter implements TypeConverter{
+public class SimpleTypeConverter implements TypeConverter{
 
     private Map<Class<?>, PropertyEditor> defaultEditors;
 
-    public SimpleTypeCoverter() {
+    public SimpleTypeConverter() {
     }
 
     /**
