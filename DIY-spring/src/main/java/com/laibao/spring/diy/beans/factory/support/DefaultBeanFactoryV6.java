@@ -8,6 +8,7 @@ import com.laibao.spring.diy.beans.factory.BeanCreationException;
 import com.laibao.spring.diy.beans.factory.config.ConfigurableFactoryV1;
 import com.laibao.spring.diy.util.Assert;
 import com.laibao.spring.diy.util.ClassUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -64,11 +65,17 @@ public class DefaultBeanFactoryV6 extends DefaultSingletonBeanRegistry
         Object bean = instantiateBean(beanDefinition);
 
         //设置属性
-        populateBean(beanDefinition, bean);
+        //populateBean(beanDefinition, bean);
+        populateBeanUseApacheCommonBeanUtils(beanDefinition,bean);
 
         return bean;
     }
 
+    /**
+     *  实例化Bean对象【创建一个Bean对象】
+     * @param beanDefinition
+     * @return Object
+     */
     private Object instantiateBean(BeanDefinitionV3 beanDefinition) {
 
         ClassLoader classLoader = this.getBeanClassLoader();//ClassUtils.getDefaultClassLoader();
@@ -82,6 +89,11 @@ public class DefaultBeanFactoryV6 extends DefaultSingletonBeanRegistry
     }
 
 
+    /**
+     * 设置Bean对象的有关属性值
+     * @param beanDefinition
+     * @param bean
+     */
     private void populateBean(BeanDefinitionV3 beanDefinition, Object bean) {
         // 获取一个bean下所有的PropertyValue
         List<PropertyValue> propertyValues = beanDefinition.getPropertyValues();
@@ -121,6 +133,36 @@ public class DefaultBeanFactoryV6 extends DefaultSingletonBeanRegistry
             }
         } catch (Exception e) {
             throw new BeanCreationException("Failed to obtain BeanInfo for class["+beanDefinition.getBeanClassName()+"]",e);
+        }
+
+    }
+
+
+    /**
+     * 采用 Apache Common BeanUtils工具类来设置Bean对象的有关属性值
+     * @param beanDefinition
+     * @param bean
+     */
+    private void populateBeanUseApacheCommonBeanUtils(BeanDefinitionV3 beanDefinition, Object bean) {
+        List<PropertyValue> propertyValues = beanDefinition.getPropertyValues();
+        if (propertyValues == null || propertyValues.isEmpty()) {
+            return;
+        }
+        BeanDefinitionValueResolverV2 valueResolver = new BeanDefinitionValueResolverV2(this);
+        try {
+            for (PropertyValue propertyValue : propertyValues) {
+                String propertyName = propertyValue.getName();
+                Object originalValue = propertyValue.getValue();
+                Object resolver = valueResolver.resolveValueIfNecessary(originalValue);
+
+                //假设现在originalValue表示的是ref=accountDao,已经通过resolver得到了accountDao对象，接下来
+                //如何调用petStoreService的setAccountDao方法？
+                //通过Apache Common BeanUtils工具类来完成属性值的设置,避免了又一次的循环
+                BeanUtils.copyProperty(bean, propertyName, resolver);
+
+            }
+        } catch (Exception e) {
+            throw new BeanCreationException("Populate bean property failed for["+beanDefinition.getBeanClassName()+"");
         }
 
     }
