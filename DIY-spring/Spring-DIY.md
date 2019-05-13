@@ -97,14 +97,14 @@
 
     9:  从createBean【Bean创建】到initiateBean【Bean初始化】和populateBean【注入Bean】的拆分
 
-
+    10: 引入Apache Common-BeanUtils的解决方案
 ```
 
 * Constructor Injection [第六周]
 
 ```
 
-    1:  引入ConstructorArgument
+    1:  引入Constructor-Argument
 
     2:  如何找到合适的构造器
 
