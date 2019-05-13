@@ -2,6 +2,8 @@ package com.laibao.spring.diy.beans.factory.support;
 
 import com.laibao.spring.diy.beans.BeanDefinitionV3;
 import com.laibao.spring.diy.beans.PropertyValue;
+import com.laibao.spring.diy.beans.SimpleTypeConverter;
+import com.laibao.spring.diy.beans.TypeConverter;
 import com.laibao.spring.diy.beans.factory.BeanCreationException;
 import com.laibao.spring.diy.beans.factory.config.ConfigurableFactoryV1;
 import com.laibao.spring.diy.util.Assert;
@@ -14,14 +16,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
-                                    implements ConfigurableFactoryV1,BeanDefinitionRegistryV3{
+public class DefaultBeanFactoryV6 extends DefaultSingletonBeanRegistry
+        implements ConfigurableFactoryV1,BeanDefinitionRegistryV3{
 
     private final Map<String,BeanDefinitionV3> beanDefinitionMap = new ConcurrentHashMap<>();
 
     private ClassLoader beanClassLoader;
 
-    public DefaultBeanFactoryV5() {
+    public DefaultBeanFactoryV6() {
 
     }
 
@@ -34,6 +36,7 @@ public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
     public ClassLoader getBeanClassLoader() {
         return  (this.beanClassLoader != null) ? beanClassLoader : ClassUtils.getDefaultClassLoader();
     }
+
 
     @Override
     public Object getBean(String beanId) {
@@ -55,19 +58,6 @@ public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
         return createBean(beanDefinition);
     }
 
-    /*
-    private Object createBean(BeanDefinitionV3 beanDefinition) {
-
-        ClassLoader classLoader = this.getBeanClassLoader();//ClassUtils.getDefaultClassLoader();
-        String beanClassName = beanDefinition.getBeanClassName();
-        try {
-            Class<?> clz = classLoader.loadClass(beanClassName);
-            return clz.newInstance();
-        }catch (Exception e) {
-            throw new BeanCreationException("bean creation for "+beanClassName+ " failed ",e);
-        }
-    }*/
-
 
     public Object createBean(BeanDefinitionV3 beanDefinition) {
         //创建实例
@@ -78,7 +68,6 @@ public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
 
         return bean;
     }
-
 
     private Object instantiateBean(BeanDefinitionV3 beanDefinition) {
 
@@ -101,9 +90,10 @@ public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
         }
 
         // 实例化BeanDefinitionValueResolve，并传入当前的DefaultBeanFactory5
-        BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this);
+        BeanDefinitionValueResolverV2 valueResolver = new BeanDefinitionValueResolverV2(this);
 
-        //SimpleTypeConverter coverter = new SimpleTypeConverter();
+        //实例化类型转换对象,以便Bean对象的各个属性进行必要的转换,String类型转换成各个具体类型【int.boolean,double】等等
+        TypeConverter typeConverter = new SimpleTypeConverter();
 
         try {
             for (PropertyValue propertyValue : propertyValues) {
@@ -122,9 +112,9 @@ public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
                 PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
                 for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
                     if (propertyDescriptor.getName().equals(propertyName)) {
-                        //Object convertedValue = coverter.convertIfNecessary(resolvedValue, propertyDescriptor.getPropertyType());
+                        Object convertedValue = typeConverter.convertIfNecessary(resolvedValue, propertyDescriptor.getPropertyType());
                         //通过反射的方式调用set方法
-                        propertyDescriptor.getWriteMethod().invoke(bean, resolvedValue);
+                        propertyDescriptor.getWriteMethod().invoke(bean, convertedValue);
                         break;
                     }
                 }
@@ -134,7 +124,6 @@ public class DefaultBeanFactoryV5 extends DefaultSingletonBeanRegistry
         }
 
     }
-
 
     @Override
     public BeanDefinitionV3 getBeanDefinitionV3(String beanId) {
