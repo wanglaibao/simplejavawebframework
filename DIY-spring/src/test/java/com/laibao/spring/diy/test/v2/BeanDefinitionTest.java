@@ -51,7 +51,7 @@ public class BeanDefinitionTest {
         BeanDefinitionV3 petStoreService = factory.getBeanDefinitionV3("petStore");
         List<PropertyValue> pvs = petStoreService.getPropertyValues();
 
-        Assert.assertTrue(pvs.size() == 2);
+        Assert.assertTrue(pvs.size() == 3);
 
         {
             PropertyValue pv = this.getPropertyValue("accountDao", pvs);
