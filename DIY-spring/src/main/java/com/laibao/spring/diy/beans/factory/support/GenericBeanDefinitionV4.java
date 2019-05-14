@@ -68,4 +68,14 @@ public class GenericBeanDefinitionV4 implements BeanDefinitionV4 {
     public ConstructorArgument getConstructorArgument() {
         return this.constructorArgument;
     }
+
+    @Override
+    public boolean hasConstructorArgumentValues() {
+        return !this.constructorArgument.isEmpty();
+    }
+
+    @Override
+    public String getId() {
+        return this.id;
+    }
 }
