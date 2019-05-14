@@ -38,4 +38,16 @@ public interface BeanDefinitionV4 {
      * @return ConstructorArgument
      */
     ConstructorArgument getConstructorArgument();
+
+    /**
+     * 判断是否存在构造函数参数
+     * @return boolean
+     */
+    boolean hasConstructorArgumentValues();
+
+    /**
+     * 获取Bean对象所对应的Id
+     * @return String
+     */
+    String getId();
 }
