@@ -65,3 +65,22 @@ https://www.douban.com/doulist/990731/?start=0&sort=seq&playable=0&sub_type=
 
 
 
+[Scylla]  (https://www.scylladb.com/)
+
+[Cassandra 数据库] (https://www.zhihu.com/question/19592244)
+
+
+[架构师演讲视频排期] (http://sz2016.archsummit.com/content/3005/)
+
+[郭东白]   (https://yq.aliyun.com/articles/57238)
+
+[基于大数据的全球电商系统架构性能优化]    (http://www.infoq.com/cn/presentations/global-business-system-architecture-performance-optimization)
+
+
+[程序员如何自我学习？阿里资深技术专家这样做] (https://yq.aliyun.com/articles/621243?spm=a2c4e.11163080.searchblog.9.2ee02ec1rp16j8)
+
+[中国科学技术大学 数学基础选讲] (https://www.bilibili.com/video/av50337793?from=search&seid=12378574205058758044)
+[高等代数【241集】(李尚志：北京航空航天大学)] (https://www.bilibili.com/video/av37442054?from=search&seid=9789508841342412601)
+[编译原理 — 中科大] (https://www.bilibili.com/video/av17404276?from=search&seid=9789508841342412601)
+
+
