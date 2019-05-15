@@ -11,6 +11,10 @@ import org.apache.commons.logging.LogFactory;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
+/**
+ * 该类的作用是 找到一个合适的构造函数,
+ * 并且通过构造函数的参数来完成类的实例化操作
+ */
 public class ConstructorResolver {
     protected final Log logger = LogFactory.getLog(getClass());
 
