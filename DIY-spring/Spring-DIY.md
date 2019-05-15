@@ -114,15 +114,51 @@
 
 ```
 
-* 实现注解和auto-scan [第七周]
+* Java Annotation And Bean Auto-Scan Implements[第七,八周]
+
+```
+    1:  Java Annotation注解的讲解
+
+    2:  使用ASM读取类的Metadata
+
+    3:  读取一个包下所有的class作为Resource
+
+    4:  新的BeanDefinition实现类引入
+
+    5:  给auto-scan的Bean命名:BeanNameGenerator新的抽象
+
+    6:  DependencyDescriptor,InjectionMetadata,InjectedElement
+
+    7:  用AutowiredAnnotationProcessor实现注入
+
+    8:  Bean的生命周期
+
+    9:  BeanPostProcessor接口及其实现和调用
 
 ```
 
-```
-
-* 实现AOP [第八,九,十周]
+* AOP Implements[第九,十周]
 
 ```
+    1:  代理模式和动态代理模式
+
+    2:  CGLib和Java动态代理的原理
+
+    3:  PointCut，Advice等AOP概念
+
+    4:  实现Pointcut和MethodMatcher，MethodLocatingFactory
+
+    5:  给定一个对象及相应的方法和一系列拦截器(beforeAdvice,afterAdvice)
+
+    6:  需要实现正确的调用次序实现CGLibProxyFactory
+
+    7:  实现“合成”Bean
+
+    8:  实现对resolveInnerBean使用AspectJAutoProxyCreator进行封装
+
+    9:  用Java动态代理实现AOP
+
+    10: 课程总结
 
 ```
 
