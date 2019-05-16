@@ -1,6 +1,9 @@
 #           SPRING-DIY || SPRING-DIY || SPRING-DIY || SPRING-DIY
 
-[springframework 官方源码资源下载] (https://maven.springframework.org/release/org/springframework/spring/4.3.24.RELEASE/)
+* [springframework 官方源码资源下载] (https://maven.springframework.org/release/org/springframework/spring/4.3.24.RELEASE/)
+* [Greenplum DB] (https://github.com/greenplum-db)
+* [greenplum-db/gpdb] (https://github.com/greenplum-db/gpdb)
+* [【编程开发】名师带你打造年薪千万Java架构师（完）] (https://www.bilibili.com/video/av45612966/?p=3)
 
 ```
 
