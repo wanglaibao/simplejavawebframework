@@ -52,12 +52,9 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
         return doGet(attributeName, Class[].class);
     }
 
-
     private <T> T doGet(String attributeName, Class<T> expectedType) {
-
         Object value = this.get(attributeName);
         Assert.notNull(value, format("Attribute '%s' not found", attributeName));
         return (T) value;
     }
-
 }
