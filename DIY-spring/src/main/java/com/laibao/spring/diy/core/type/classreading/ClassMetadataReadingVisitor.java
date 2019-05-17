@@ -1,11 +1,12 @@
 package com.laibao.spring.diy.core.type.classreading;
 
+import com.laibao.spring.diy.core.type.ClassMetadata;
 import com.laibao.spring.diy.util.ClassUtils;
 import org.springframework.asm.ClassVisitor;
 import org.springframework.asm.Opcodes;
 import org.springframework.asm.SpringAsmInfo;
 
-public class ClassMetadataReadingVisitor extends ClassVisitor {
+public class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata {
 
     private String className;
 
@@ -62,6 +63,7 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
         }
     }
 
+    @Override
     public String getClassName() {
         return className;
     }
@@ -70,6 +72,7 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
         this.className = className;
     }
 
+    @Override
     public boolean isInterface() {
         return isInterface;
     }
@@ -78,6 +81,7 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
         isInterface = anInterface;
     }
 
+    @Override
     public boolean isAbstract() {
         return isAbstract;
     }
@@ -86,6 +90,7 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
         isAbstract = anAbstract;
     }
 
+    @Override
     public boolean isFinal() {
         return isFinal;
     }
@@ -94,6 +99,7 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
         isFinal = aFinal;
     }
 
+    @Override
     public String getSuperClassName() {
         return superClassName;
     }
@@ -102,11 +108,17 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
         this.superClassName = superClassName;
     }
 
+    @Override
     public String[] getInterfaceNames() {
         return interfaces;
     }
 
     public void setInterfaces(String[] interfaces) {
         this.interfaces = interfaces;
+    }
+
+    @Override
+    public boolean hasSuperClass() {
+        return superClassName != null ? true : false;
     }
 }
