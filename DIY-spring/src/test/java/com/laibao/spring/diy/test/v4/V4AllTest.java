@@ -1,6 +1,6 @@
 package com.laibao.spring.diy.test.v4;
 
-import com.laibao.spring.diy.test.v3.*;
+import com.laibao.spring.diy.test.v4.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
