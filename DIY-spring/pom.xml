@@ -57,6 +57,12 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.6</version>
+            <scope>test</scope>
+        </dependency>
         <!-- TDD 测试依赖包结束 -->
     </dependencies>
 
