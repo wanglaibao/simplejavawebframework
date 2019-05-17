@@ -41,6 +41,14 @@
         </dependency>
         <!-- 日志有关的依赖包结束 -->
 
+        <!-- 字节码解析spring-core-asm类库 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core-asm</artifactId>
+            <version>3.2.18.RELEASE</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/spring-core-asm-3.2.18.RELEASE.jar</systemPath>
+        </dependency>
 
         <!-- TDD 测试依赖包开始 -->
         <dependency>
