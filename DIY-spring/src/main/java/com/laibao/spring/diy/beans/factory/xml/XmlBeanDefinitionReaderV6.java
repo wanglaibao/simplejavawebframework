@@ -1,16 +1,17 @@
 package com.laibao.spring.diy.beans.factory.xml;
 
-import com.laibao.spring.diy.beans.BeanDefinitionV3;
 import com.laibao.spring.diy.beans.BeanDefinitionV4;
+import com.laibao.spring.diy.beans.BeanDefinitionV5;
 import com.laibao.spring.diy.beans.ConstructorArgument;
 import com.laibao.spring.diy.beans.PropertyValue;
 import com.laibao.spring.diy.beans.factory.BeanDefinitionStoreException;
 import com.laibao.spring.diy.beans.factory.config.RuntimeBeanReference;
 import com.laibao.spring.diy.beans.factory.config.TypedStringValue;
-import com.laibao.spring.diy.beans.factory.support.BeanDefinitionRegistryV3;
 import com.laibao.spring.diy.beans.factory.support.BeanDefinitionRegistryV4;
-import com.laibao.spring.diy.beans.factory.support.GenericBeanDefinitionV3;
+import com.laibao.spring.diy.beans.factory.support.BeanDefinitionRegistryV5;
 import com.laibao.spring.diy.beans.factory.support.GenericBeanDefinitionV4;
+import com.laibao.spring.diy.beans.factory.support.GenericBeanDefinitionV5;
+import com.laibao.spring.diy.context.annotation.ClassPathBeanDefinitionScanner;
 import com.laibao.spring.diy.core.io.Resource;
 import com.laibao.spring.diy.util.StringUtils;
 import org.apache.log4j.Logger;
@@ -22,16 +23,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 
-/**
- * 新增 ConstructorArgument getConstructorArgument()方法
- *
- * 主要用于构造函数方式注入的时候
- *
- * 获对象的构造函数参数列表所包含的参数值
- */
-public class XmlBeanDefinitionReaderV5 {
+public class XmlBeanDefinitionReaderV6 {
 
-    private final static Logger logger = Logger.getLogger(XmlBeanDefinitionReaderV5.class);
+    private final static Logger logger = Logger.getLogger(XmlBeanDefinitionReaderV6.class);
 
     private static final String ID_ATTRIBUTE = "id";
 
@@ -51,11 +45,21 @@ public class XmlBeanDefinitionReaderV5 {
 
     public static final String TYPE_ATTRIBUTE = "type";
 
-    private BeanDefinitionRegistryV4 register;
+    public static final String BEANS_NAMESPACE_URI = "http://www.springframework.org/schema/beans";
 
-    public XmlBeanDefinitionReaderV5(BeanDefinitionRegistryV4 register) {
+    public static final String CONTEXT_NAMESPACE_URI = "http://www.springframework.org/schema/context";
+
+    public static final String AOP_NAMESPACE_URI = "http://www.springframework.org/schema/aop";
+
+    private static final String BASE_PACKAGE_ATTRIBUTE = "base-package";
+
+    private BeanDefinitionRegistryV5 register;
+
+    public XmlBeanDefinitionReaderV6(BeanDefinitionRegistryV5 register) {
         this.register = register;
     }
+
+
 
 
     /**
@@ -74,9 +78,18 @@ public class XmlBeanDefinitionReaderV5 {
             Iterator<Element> iterator = rootElement.elementIterator();
             while (iterator.hasNext()) {
                 Element element = iterator.next();
+                String namespaceUri = element.getNamespaceURI();
+
+                if (this.isDefaultNamespace(namespaceUri)) {
+                    parseDefaultElement(element);//普通的bean
+                } else if (this.isContextNamespace(namespaceUri)) {
+                    parseComponentElement(element);//例如<context:component-scan>
+                }
+
+            /*
                 String id = element.attributeValue(ID_ATTRIBUTE);
                 String beanClassName = element.attributeValue(CLASS_ATTRIBUTE);
-                BeanDefinitionV4 beanDefinition = new GenericBeanDefinitionV4(id,beanClassName);
+                BeanDefinitionV5 beanDefinition = new GenericBeanDefinitionV5(id,beanClassName);
 
                 //新增对Bean定义作用域的判断
                 if (element.attribute(SCOPE_ATTRIBUTE) != null) {
@@ -88,7 +101,9 @@ public class XmlBeanDefinitionReaderV5 {
 
                 //新增对Bean的各种属性的处理
                 parsePropertyElement(element,beanDefinition);
-                register.registerBeanDefinitionV4(id,beanDefinition);
+                register.registerBeanDefinitionV5(id,beanDefinition);
+
+                */
             }
 
         } catch (Exception e) {
@@ -104,13 +119,36 @@ public class XmlBeanDefinitionReaderV5 {
         }
     }
 
+    public boolean isDefaultNamespace(String namespaceUri) {
+        return (!StringUtils.hasLength(namespaceUri) || BEANS_NAMESPACE_URI.equals(namespaceUri));
+    }
+    public boolean isContextNamespace(String namespaceUri){
+        return (!StringUtils.hasLength(namespaceUri) || CONTEXT_NAMESPACE_URI.equals(namespaceUri));
+    }
 
+    private void parseComponentElement(Element element) {
+        String basePackages = element.attributeValue(BASE_PACKAGE_ATTRIBUTE);
+        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(register);
+        scanner.doScan(basePackages);
+
+    }
+    private void parseDefaultElement(Element element) {
+        String id = element.attributeValue(ID_ATTRIBUTE);
+        String className = element.attributeValue(CLASS_ATTRIBUTE);
+        BeanDefinitionV5 beanDefinition = new GenericBeanDefinitionV5(id, className);
+        if (element.attribute(SCOPE_ATTRIBUTE) != null) {
+            beanDefinition.setScope(element.attributeValue(SCOPE_ATTRIBUTE));
+        }
+        parseConstructorArgElements(element, beanDefinition);
+        parsePropertyElement(element, beanDefinition);
+        register.registerBeanDefinitionV5(id, beanDefinition);
+    }
     /**
      *  获取Bean对象的属性节点并且委托 parsePropertyValue(....)方法,进行属性的解析
      * @param beanElem
      * @param beanDefinition
      */
-    private void parsePropertyElement(Element beanElem, BeanDefinitionV4 beanDefinition) {
+    private void parsePropertyElement(Element beanElem, BeanDefinitionV5 beanDefinition) {
         Iterator iterator = beanElem.elementIterator(PROPERTY_ELEMENT);
         while (iterator.hasNext()) {
             Element propElem = (Element) iterator.next();
@@ -132,7 +170,7 @@ public class XmlBeanDefinitionReaderV5 {
      * @param propertyName
      * @return Object
      */
-    private Object parsePropertyValue(Element ele, BeanDefinitionV4 beanDefinition, String propertyName) {
+    private Object parsePropertyValue(Element ele, BeanDefinitionV5 beanDefinition, String propertyName) {
 
         String elementName = (propertyName != null) ? "<property> element for property '" + propertyName + "'" : "<constructor-arg> element";
 
@@ -166,7 +204,7 @@ public class XmlBeanDefinitionReaderV5 {
      * @param beanElement
      * @param beanDefinition
      */
-    public void parseConstructorArgElements(Element beanElement, BeanDefinitionV4 beanDefinition) {
+    public void parseConstructorArgElements(Element beanElement, BeanDefinitionV5 beanDefinition) {
         Iterator iterator = beanElement.elementIterator(CONSTRUCTOR_ARG_ELEMENT);
         while (iterator.hasNext()) {
             Element element = (Element) iterator.next();
@@ -179,7 +217,7 @@ public class XmlBeanDefinitionReaderV5 {
      * @param ele
      * @param beanDefinition
      */
-    public void parseConstructorArgElement(Element ele, BeanDefinitionV4 beanDefinition) {
+    public void parseConstructorArgElement(Element ele, BeanDefinitionV5 beanDefinition) {
         String typeAttr = ele.attributeValue(TYPE_ATTRIBUTE);
 
         String nameAttr = ele.attributeValue(NAME_ATTRIBUTE);
